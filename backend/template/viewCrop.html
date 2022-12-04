@@ -1,0 +1,212 @@
+{% extends 'headerPage.html' %}
+
+{% block content%}
+
+<style>
+
+
+body{
+    background: linear-gradient(to bottom, #33ccff 0%, #99ff99 100%);
+    background-attachment: fixed;
+}
+ 
+        
+.column {
+    float: left;
+    width: 50%;
+    padding: 5px;
+  }
+  
+  /* Clear floats after image containers */
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  .column2 {
+    float: left;
+    width: 33.33%;
+    padding: 2px;
+  }
+  
+  /* Clear floats after image containers */
+  .row2::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+</style>
+
+
+<body>
+
+
+<div class="row">
+    <div class="column">
+      <h2>Original image</h2>
+      <img src={{filePathName}} alt="Not found">
+    </div>
+    <div class="column">
+        <h2>Localized image</h2>
+      <img src={{markedImagePath.0}} alt="Not found">
+    </div>
+    <div class="column">
+        <h2>Calculated Angles</h2>
+      <img src={{angleImagePath.0}} alt="Not found">
+    </div>
+    <div class="column">
+        <h2>Enclosed area</h2>
+      <img src={{areaImagePath.0}} alt="Not found">
+    </div>
+</div>
+
+<div class="row2">
+    <h1>Click on the mentioned corner points</h1>
+    <div class="column2">
+      <h2>L1 Disc</h2>
+      <img src={{listOfImagesPath.0}} " style="width: 200px;" name="l1" id="l1">
+      <h3>Upper 2 corners</h3>
+    </div>
+    <div class="column2">
+        <h2>L5 Disc</h2>
+        <img src={{listOfImagesPath.4}} " style="width: 200px;" name="l5" id="l5"> 
+        <h3>Lower 2 corners</h3>
+    </div>
+    <div class="column2">
+        <h2>S1 Disc</h2>
+        <img src={{listOfImagesPath.5}} " style="width: 200px;" name="s1" id="s1"> <br>
+        <h3>Upper 2 corners</h3>
+    </div>
+</div>
+<br><br>
+{% comment %} 
+<label for="fname">Enter patient's name:</label>
+<input type="text" id="pname" name="pname">
+<label for="age">Enter age:</label>
+<input type="text" id="age" name="age">
+<br><br>
+ {% endcomment %}
+<button onclick="get_data()">Submit</button>
+
+
+<script>
+    
+    
+    var dict = {l1: [], l5:[], s1: []};
+    document.getElementById("l1").addEventListener('click', function (event) {
+        // https://stackoverflow.com/a/288731/1497139
+        bounds=this.getBoundingClientRect();
+        var left=bounds.left;
+        var bottom=bounds.bottom;
+        //var x = event.pageX - left;
+        var x = (event.pageX - (bounds.x + window.scrollX));
+        var y = this.clientHeight - (event.pageY - (bounds.y + window.scrollY));
+        {% comment %} console.log(event.pageY + " " + (bounds.y + window.scrollY))
+        console.log(event.pageY - (bounds.y + window.scrollY))
+        console.log(y)
+        var cw=this.clientWidth
+        var ch=this.clientHeight
+        var iw=this.naturalWidth
+        var ih=this.naturalHeight
+        var px=x/cw*iw
+        var py=y/ch*ih
+        //py = py - ih {% endcomment %}
+        const coordinates = new Array(x, y);
+        dict["l1"] = [...dict['l1'], coordinates];
+        //alert("click on "+ dict["l1"]);
+        //document.write("click on "+this.tagName+" at pixel ("+px+","+py+") mouse pos ("+x+"," + y+ ") relative to boundingClientRect at ("+left+","+top+") client image size: "+cw+" x "+ch+" natural image size: "+iw+" x "+ih );
+      });
+
+      document.getElementById("l5").addEventListener('click', function (event) {
+        // https://stackoverflow.com/a/288731/1497139
+        bounds=this.getBoundingClientRect();
+        var left=bounds.left;
+        var bottom=bounds.bottom;
+        var x = (event.pageX - (bounds.x + window.scrollX));
+        var y = this.clientHeight - (event.pageY - (bounds.y + window.scrollY));
+        console.log(event.pageY + " " + (bounds.y + window.scrollY))
+        console.log(event.pageY - (bounds.y + window.scrollY))
+        console.log(y)
+        var cw=this.clientWidth
+        var ch=this.clientHeight
+        var iw=this.naturalWidth
+        var ih=this.naturalHeight
+        var px=x/cw*iw
+        var py=y/ch*ih
+        //py = py - ih
+        const coordinates = new Array(x, y);
+        {% comment %} alert("click on "+this.tagName+" at pixel ("+px+","+py+") mouse pos ("+x+"," + y+ ") relative to boundingClientRect at ("+left+","+top+") client image size: "+cw+" x "+ch+" natural image size: "+iw+" x "+ih ); {% endcomment %}
+        //const coordinates = new Array(px, py);
+        dict["l5"] = [...dict['l5'], coordinates];
+    });
+
+      document.getElementById("s1").addEventListener('click', function (event) {
+        // https://stackoverflow.com/a/288731/1497139
+        bounds=this.getBoundingClientRect();
+        var left=bounds.left;
+        var bottom=bounds.bottom;
+        var x = (event.pageX - (bounds.x + window.scrollX));
+        var y = this.clientHeight - (event.pageY - (bounds.y + window.scrollY));
+        console.log(event.pageY + " " + (bounds.y + window.scrollY))
+        console.log(event.pageY - (bounds.y + window.scrollY))
+        console.log(y)
+        var cw=this.clientWidth
+        var ch=this.clientHeight
+        var iw=this.naturalWidth
+        var ih=this.naturalHeight
+        var px=x/cw*iw
+        var py=y/ch*ih
+        //py = py - ih
+        const coordinates = new Array(x, y);
+        {% comment %} alert("click on "+this.tagName+" at pixel ("+px+","+py+") mouse pos ("+x+"," + y+ ") relative to boundingClientRect at ("+left+","+top+") client image size: "+cw+" x "+ch+" natural image size: "+iw+" x "+ih ); {% endcomment %}
+        
+        //const coordinates = new Array(px, py);
+        dict["s1"] = [...dict['s1'], coordinates];
+       
+    });
+
+    var URL="{% url 'get_data' %}";
+    function get_data(){
+            //var data = {'count': '5', 'csrfmiddlewaretoken': '{{ csrf_token }}'};
+            var digit = 5;
+            //const pname = document.getElementById("pname");
+            var data = {
+                'l1': dict['l1'].slice(dict['l1'].length-2),
+                'l5': dict['l5'].slice(dict['l5'].length-2),
+                's1': dict['s1'].slice(dict['s1'].length-2),
+                //'pname' : pname,
+            };
+
+            fetch(URL, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    "X-CSRFToken": '{{csrf_token}}'
+                },
+                body: JSON.stringify(data),
+                credentials: 'same-origin',
+            })
+            {% comment %} .then(response => response.json())
+            .then(response => console.log(JSON.stringify(response))) {% endcomment %}
+
+        }
+        
+</script>
+
+<br><br>
+<form method="post" enctype="multipart/form-data" action="/report/">
+    {% csrf_token %}
+    <label for="fname">Enter patient's name:</label>
+    <input type="text" id="pname" name="pname">
+    <label for="age">Enter age:</label>
+    <input type="text" id="age" name="age">
+    <br><br>
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+
+{% endblock %}
+

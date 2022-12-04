@@ -1,0 +1,37 @@
+{% extends 'headerPage.html' %}
+
+{% block content%}
+
+<style>
+body{
+    background: linear-gradient(to bottom, #33ccff 0%, #99ff99 100%);
+    background-attachment: fixed;
+}
+</style>
+<body>
+<h2>Uplaod Image for Disease Diagnosis</h2>   
+<br>
+   
+<form method="post" enctype="multipart/form-data" action="/predictImage/">
+  
+ {% csrf_token %}
+ <div class="col-md-4 col-sm-4"><label for="fname">Upload Image File Here:</label> </div> 
+ <br><br>
+ <input name="filePath" type="file"><br><br>
+ <br>
+
+ 
+ <input type="submit" value="Submit" >
+
+</form>
+
+ {% comment %} <img src={{filePathName}} alt='imagename'>
+
+ {% for i in listOfImagesPath %}
+
+<img src={{i}} style="width: 200px;"> <br>
+{% endfor%} {% endcomment %}
+
+</body>
+
+{% endblock %}
