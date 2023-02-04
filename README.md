@@ -5,16 +5,20 @@ A lumbar spine vertebrae deformities detection tool is to be developed for the S
 
  Step 1: Upload an MRI image of lumbar sagital disc 
 
-![1](https://user-images.githubusercontent.com/46414380/215284081-b2047911-cb1f-4ff9-9098-c9b4439cf8eb.PNG)
+![Capture4](https://user-images.githubusercontent.com/46414380/216777666-b9bf84d2-78c2-41f1-9546-e030b8d5e77a.PNG)
+
 
   Output 1: Localized Discs 
-![3](https://user-images.githubusercontent.com/46414380/215284100-2b3a38d2-e094-487b-82e2-b6a46bea2f18.PNG)
+![Capture](https://user-images.githubusercontent.com/46414380/216777686-1bd898bd-08eb-4719-a566-c1a9da99a9d5.PNG)
+
 
  Output 2: Localized centroids, angles and area </h3> 
-![4](https://user-images.githubusercontent.com/46414380/215284110-f697a3dc-681e-400f-a804-565b97912253.PNG)
+ ![Capture2](https://user-images.githubusercontent.com/46414380/216777706-d2942ab2-6101-4b43-a23f-07f67ca1c234.PNG)
+
 
   Output 3: Corner points 
-![Inked5_LI](https://user-images.githubusercontent.com/46414380/215284239-36e0401d-f475-4b6a-933e-8c2122004926.jpg)
+  ![Capture3](https://user-images.githubusercontent.com/46414380/216777721-4bce13a3-d712-4375-b178-35858614d30f.PNG)
+
 
   Output 4: Patient's report 
 ![8](https://user-images.githubusercontent.com/46414380/215284146-2f3c5831-bd16-4068-9572-0be78d49717e.PNG)
